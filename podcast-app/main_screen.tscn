@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cbrdtltc81f7s"]
+
+[ext_resource type="Script" uid="uid://dlimoabl4t4o1" path="res://main_screen.gd" id="1_tjn2e"]
+
+[node name="MainScreen" type="Node2D" unique_id=580331409]
+script = ExtResource("1_tjn2e")
+
+[node name="BedMusicControls" type="VBoxContainer" parent="." unique_id=1611353839]
+offset_left = 280.0
+offset_top = 144.0
+offset_right = 546.0
+offset_bottom = 210.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BedMusicControls" unique_id=577472576]
+layout_mode = 2
+
+[node name="FileDialog" type="FileDialog" parent="BedMusicControls/HBoxContainer2" unique_id=1426772110]
+title = "Open a File"
+file_mode = 0
+
+[node name="LoadBedMusic" type="Button" parent="BedMusicControls/HBoxContainer2" unique_id=2143036947]
+layout_mode = 2
+text = "Load Bed Music
+"
+
+[node name="Label" type="Label" parent="BedMusicControls/HBoxContainer2" unique_id=286421147]
+layout_mode = 2
+text = "place holder text"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BedMusicControls" unique_id=1931582507]
+layout_mode = 2
+
+[node name="PlayBedMusic" type="Button" parent="BedMusicControls/HBoxContainer" unique_id=167093999]
+layout_mode = 2
+text = "Play Bed Music"
+
+[node name="PauseBedMusic" type="Button" parent="BedMusicControls/HBoxContainer" unique_id=1536354302]
+layout_mode = 2
+text = "Pause Bed Music"
+
+[node name="PodcastControls" type="VBoxContainer" parent="." unique_id=1856033750]
+offset_left = 288.0
+offset_top = 264.0
+offset_right = 554.0
+offset_bottom = 330.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PodcastControls" unique_id=620334661]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PodcastControls/HBoxContainer2" unique_id=1274104911]
+layout_mode = 2
+text = "Load podcast
+"
+
+[node name="Label" type="Label" parent="PodcastControls/HBoxContainer2" unique_id=590272031]
+layout_mode = 2
+text = "place holder text"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PodcastControls" unique_id=2120387390]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PodcastControls/HBoxContainer" unique_id=1684664366]
+layout_mode = 2
+text = "Play podcast"
+
+[node name="Button2" type="Button" parent="PodcastControls/HBoxContainer" unique_id=138321423]
+layout_mode = 2
+text = "Pause podcast"
+
+[connection signal="file_selected" from="BedMusicControls/HBoxContainer2/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="BedMusicControls/HBoxContainer2/LoadBedMusic" to="." method="_on_load_bed_music_pressed"]
+[connection signal="pressed" from="BedMusicControls/HBoxContainer/PlayBedMusic" to="." method="_on_play_bed_music_pressed"]

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d2c6tr03hy86"]
+
+[ext_resource type="Script" uid="uid://ch4xokrq56nlp" path="res://load_file.gd" id="1_hg1lw"]
+
+[node name="FileDialog" type="FileDialog" unique_id=685226799]
+oversampling_override = 1.0
+title = "Load A File"
+visible = true
+mode_overrides_title = false
+file_mode = 0
+script = ExtResource("1_hg1lw")
