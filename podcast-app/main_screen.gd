@@ -16,8 +16,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	bed_volume = $BedMusicControls/HScrollBar.value
-	print("be music volume", bed_volume)
+	update_bed_music_volume()
+	update_podcast_volume()
+	
 	pass
 
 
@@ -47,7 +48,13 @@ func _on_file_dialog_file_selected(selected_file: String) -> void:
 	
 	pass # Replace with function body.
 
-
+func update_bed_music_volume():
+	bed_volume = $BedMusicControls/HScrollBar.value
+	$BedMusicControls/BedVolumeLabel.text = str("volume: ", bed_volume)
+	
+func update_podcast_volume():
+	podcast_volume = $PodcastControls/PodcastVolumeSlider.value
+	$PodcastControls/PodcastVolumeLabel.text = str("volume: " , podcast_volume)
 func _on_play_bed_music_pressed() -> void:
 	$BedMusicControls/HBoxContainer/PlayBedMusic/AudioStreamPlayer.stream = bed_music
 	print(bed_music)
@@ -92,5 +99,12 @@ func _on_stop_podcast_pressed() -> void:
 
 
 func _on_h_scroll_bar_value_changed(value: float) -> void:
+	update_bed_music_volume()
 	bed_volume = $BedMusicControls/HScrollBar.value
+	pass # Replace with function body.
+
+
+func _on_podcast_volume_slider_value_changed(value: float) -> void:
+	
+	podcast_volume = $PodcastControls/PodcastVolumeSlider.value
 	pass # Replace with function body.
