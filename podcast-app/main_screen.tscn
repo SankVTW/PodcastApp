@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dlimoabl4t4o1" path="res://main_screen.gd" id="1_tjn2e"]
 
+[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_7sdtm"]
+
+[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_d2enx"]
+
 [node name="MainScreen" type="Node2D" unique_id=580331409]
 script = ExtResource("1_tjn2e")
 
@@ -34,6 +38,9 @@ layout_mode = 2
 layout_mode = 2
 text = "Play Bed Music"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BedMusicControls/HBoxContainer/PlayBedMusic" unique_id=797208785]
+stream = SubResource("AudioStreamMP3_7sdtm")
+
 [node name="PauseBedMusic" type="Button" parent="BedMusicControls/HBoxContainer" unique_id=1536354302]
 layout_mode = 2
 text = "Pause Bed Music"
@@ -47,7 +54,13 @@ offset_bottom = 330.0
 [node name="HBoxContainer2" type="HBoxContainer" parent="PodcastControls" unique_id=620334661]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="PodcastControls/HBoxContainer2" unique_id=1274104911]
+[node name="PodcastFileDialog" type="FileDialog" parent="PodcastControls/HBoxContainer2" unique_id=208933241]
+oversampling_override = 1.0
+title = "Open a File"
+position = Vector2i(0, 36)
+file_mode = 0
+
+[node name="LoadPodcast" type="Button" parent="PodcastControls/HBoxContainer2" unique_id=1274104911]
 layout_mode = 2
 text = "Load podcast
 "
@@ -59,14 +72,22 @@ text = "place holder text"
 [node name="HBoxContainer" type="HBoxContainer" parent="PodcastControls" unique_id=2120387390]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="PodcastControls/HBoxContainer" unique_id=1684664366]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PodcastControls/HBoxContainer" unique_id=2095786498]
+stream = SubResource("AudioStreamMP3_d2enx")
+
+[node name="PlayPodcast" type="Button" parent="PodcastControls/HBoxContainer" unique_id=1684664366]
 layout_mode = 2
 text = "Play podcast"
 
-[node name="Button2" type="Button" parent="PodcastControls/HBoxContainer" unique_id=138321423]
+[node name="StopPodcast" type="Button" parent="PodcastControls/HBoxContainer" unique_id=138321423]
 layout_mode = 2
 text = "Pause podcast"
 
 [connection signal="file_selected" from="BedMusicControls/HBoxContainer2/FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="BedMusicControls/HBoxContainer2/LoadBedMusic" to="." method="_on_load_bed_music_pressed"]
 [connection signal="pressed" from="BedMusicControls/HBoxContainer/PlayBedMusic" to="." method="_on_play_bed_music_pressed"]
+[connection signal="pressed" from="BedMusicControls/HBoxContainer/PauseBedMusic" to="." method="_on_pause_bed_music_pressed"]
+[connection signal="file_selected" from="PodcastControls/HBoxContainer2/PodcastFileDialog" to="." method="_on_podcast_file_dialog_file_selected"]
+[connection signal="pressed" from="PodcastControls/HBoxContainer2/LoadPodcast" to="." method="_on_load_podcast_pressed"]
+[connection signal="pressed" from="PodcastControls/HBoxContainer/PlayPodcast" to="." method="_on_play_podcast_pressed"]
+[connection signal="pressed" from="PodcastControls/HBoxContainer/StopPodcast" to="." method="_on_stop_podcast_pressed"]
