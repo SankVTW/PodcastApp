@@ -10,10 +10,10 @@
 script = ExtResource("1_tjn2e")
 
 [node name="BedMusicControls" type="VBoxContainer" parent="." unique_id=1611353839]
-offset_left = 280.0
-offset_top = 144.0
-offset_right = 546.0
-offset_bottom = 210.0
+offset_left = 192.0
+offset_top = 192.0
+offset_right = 458.0
+offset_bottom = 270.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="BedMusicControls" unique_id=577472576]
 layout_mode = 2
@@ -31,6 +31,13 @@ text = "Load Bed Music
 layout_mode = 2
 text = "place holder text"
 
+[node name="HScrollBar" type="HScrollBar" parent="BedMusicControls" unique_id=2033162066]
+layout_mode = 2
+min_value = -10.0
+max_value = 10.0
+step = 0.5
+value = -5.0
+
 [node name="HBoxContainer" type="HBoxContainer" parent="BedMusicControls" unique_id=1931582507]
 layout_mode = 2
 
@@ -46,10 +53,10 @@ layout_mode = 2
 text = "Pause Bed Music"
 
 [node name="PodcastControls" type="VBoxContainer" parent="." unique_id=1856033750]
-offset_left = 288.0
-offset_top = 264.0
-offset_right = 554.0
-offset_bottom = 330.0
+offset_left = 192.0
+offset_top = 576.0
+offset_right = 458.0
+offset_bottom = 642.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PodcastControls" unique_id=620334661]
 layout_mode = 2
@@ -85,6 +92,7 @@ text = "Pause podcast"
 
 [connection signal="file_selected" from="BedMusicControls/HBoxContainer2/FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="BedMusicControls/HBoxContainer2/LoadBedMusic" to="." method="_on_load_bed_music_pressed"]
+[connection signal="value_changed" from="BedMusicControls/HScrollBar" to="." method="_on_h_scroll_bar_value_changed"]
 [connection signal="pressed" from="BedMusicControls/HBoxContainer/PlayBedMusic" to="." method="_on_play_bed_music_pressed"]
 [connection signal="pressed" from="BedMusicControls/HBoxContainer/PauseBedMusic" to="." method="_on_pause_bed_music_pressed"]
 [connection signal="file_selected" from="PodcastControls/HBoxContainer2/PodcastFileDialog" to="." method="_on_podcast_file_dialog_file_selected"]
