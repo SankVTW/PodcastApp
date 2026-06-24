@@ -4,7 +4,8 @@ var bed_music
 var podcast
 var bed_volume 
 var podcast_volume
-
+var podcast_playtime
+var podcast_progress
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,8 +34,11 @@ func load_podcast_mp3(path):
 	var file = FileAccess.open(path, FileAccess.READ)
 	var sound = AudioStreamMP3.new()
 	sound.data = file.get_buffer(file.get_length())
-	print(sound)
+	print("File is ",   sound.get_length(), " seconds long")
 	podcast = sound
+	podcast_playtime = podcast.get_length()
+	$PodcastControls/PodcastPlayerInfo/ProgressArea/ProgressTimeLabel.text = str("00:00:00 / ", podcast_playtime )
+	print(" total play time for file is ", podcast_playtime , " seconds")
 func _on_load_bed_music_pressed() -> void:
 	$BedMusicControls/HBoxContainer2/FileDialog.visible = true
 	pass
@@ -86,7 +90,7 @@ func _on_podcast_file_dialog_file_selected(path: String) -> void:
 func _on_play_podcast_pressed() -> void:
 	$PodcastControls/HBoxContainer/AudioStreamPlayer.stream = podcast
 	$PodcastControls/HBoxContainer/AudioStreamPlayer.playing = true
-	$PodcastControls/HBoxContainer/AudioStreamPlayer.volume_db = 5.0
+	$PodcastControls/HBoxContainer/AudioStreamPlayer.volume_db = podcast_volume
 	
 	pass # Replace with function body.
 
@@ -105,6 +109,6 @@ func _on_h_scroll_bar_value_changed(value: float) -> void:
 
 
 func _on_podcast_volume_slider_value_changed(value: float) -> void:
-	
+	update_podcast_volume()
 	podcast_volume = $PodcastControls/PodcastVolumeSlider.value
 	pass # Replace with function body.

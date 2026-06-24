@@ -43,6 +43,7 @@ layout_mode = 2
 text = "volume : "
 
 [node name="HScrollBar" type="HScrollBar" parent="BedMusicControls" unique_id=2033162066]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 min_value = -10.0
 max_value = 10.0
@@ -95,10 +96,29 @@ layout_mode = 2
 text = "Volume:"
 
 [node name="PodcastVolumeSlider" type="HScrollBar" parent="PodcastControls" unique_id=1312411120]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 min_value = -10.0
 max_value = 10.0
 step = 0.5
+
+[node name="PodcastPlayerInfo" type="VBoxContainer" parent="PodcastControls" unique_id=207762990]
+layout_mode = 2
+
+[node name="ProgressArea" type="HBoxContainer" parent="PodcastControls/PodcastPlayerInfo" unique_id=1044771444]
+layout_mode = 2
+
+[node name="ProgressLabel" type="Label" parent="PodcastControls/PodcastPlayerInfo/ProgressArea" unique_id=1790028275]
+layout_mode = 2
+text = "Progress:"
+
+[node name="ProgressTimeLabel" type="Label" parent="PodcastControls/PodcastPlayerInfo/ProgressArea" unique_id=1836336381]
+layout_mode = 2
+text = "00:00:00  / 01:00:00"
+
+[node name="HScrollBar" type="HScrollBar" parent="PodcastControls/PodcastPlayerInfo" unique_id=1272085998]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PodcastControls" unique_id=2120387390]
 layout_mode = 2
