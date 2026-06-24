@@ -26,6 +26,7 @@ layout_mode = 2
 [node name="FileDialog" type="FileDialog" parent="BedMusicControls/HBoxContainer2" unique_id=1426772110]
 title = "Open a File"
 file_mode = 0
+access = 2
 
 [node name="LoadBedMusic" type="Button" parent="BedMusicControls/HBoxContainer2" unique_id=2143036947]
 layout_mode = 2
@@ -77,6 +78,7 @@ oversampling_override = 1.0
 title = "Open a File"
 position = Vector2i(0, 36)
 file_mode = 0
+access = 2
 
 [node name="LoadPodcast" type="Button" parent="PodcastControls/HBoxContainer2" unique_id=1274104911]
 layout_mode = 2
