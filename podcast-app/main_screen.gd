@@ -12,7 +12,7 @@ func _ready() -> void:
 	podcast_playtime = 0.0
 	print(bed_music)
 	print(bed_volume)
-	$Timer.autostart
+	
 	pass # Replace with function body.
 
 
@@ -122,21 +122,16 @@ func _on_podcast_volume_slider_value_changed(value: float) -> void:
 	pass # Replace with function body.
 
 
-func _on_loop_bed_music_toggled(toggled_on: bool) -> void:
-	match $BedMusicControls/HBoxContainer/LoopBedMusic.disabled:
-		false : $BedMusicControlsmatch/HBoxContainer/PlayBedMusic/AudioStreamPlayer.looping = true
-		false : print ("looping bed music on")
-		true : $BedMusicControlsmatch/HBoxContainer/PlayBedMusic/AudioStreamPlayer.looping = true
-		true : print ("looping bed music off")
+#func _on_loop_bed_music_toggled(toggled_on: bool) -> void:
+	#match $BedMusicControls/HBoxContainer/LoopBedMusic.disabled:
+		#false : $BedMusicControlsmatch/HBoxContainer/PlayBedMusic/AudioStreamPlayer.looping = true
+		#false : print ("looping bed music on")
+		#true : $BedMusicControlsmatch/HBoxContainer/PlayBedMusic/AudioStreamPlayer.looping = true
+		#true : print ("looping bed music off")
 	
 	pass # Replace with function body.
 func update_podcast_progress():
 	podcast_progress = $PodcastControls/HBoxContainer/AudioStreamPlayer.get_playback_position()
-	$PodcastControls/PodcastPlayerInfo/ProgressArea/ProgressTimeLabel.text = str(podcast_progress," / ", podcast_playtime )
-	print(podcast_progress," / ", podcast_playtime )
-
-
-func _on_timer_timeout() -> void:
-	print("timer update")
-	update_podcast_progress()
-	pass # Replace with function body.
+	$PodcastControls/PodcastPlayerInfo/ProgressArea/ProgressTimeLabel.text = str(roundf(podcast_progress)," / ", podcast_playtime )
+	print(roundf(podcast_progress)," / ", podcast_playtime )
+	

@@ -59,7 +59,7 @@ text = "Play Bed Music"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BedMusicControls/HBoxContainer/PlayBedMusic" unique_id=797208785]
 stream = SubResource("AudioStreamMP3_7sdtm")
-parameters/looping = false
+parameters/looping = true
 
 [node name="PauseBedMusic" type="Button" parent="BedMusicControls/HBoxContainer" unique_id=1536354302]
 layout_mode = 2
@@ -139,9 +139,6 @@ text = "Play podcast"
 layout_mode = 2
 text = "Pause podcast"
 
-[node name="Timer" type="Timer" parent="." unique_id=1857122009]
-autostart = true
-
 [connection signal="file_selected" from="BedMusicControls/HBoxContainer2/FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="BedMusicControls/HBoxContainer2/LoadBedMusic" to="." method="_on_load_bed_music_pressed"]
 [connection signal="value_changed" from="BedMusicControls/HScrollBar" to="." method="_on_h_scroll_bar_value_changed"]
@@ -153,4 +150,3 @@ autostart = true
 [connection signal="value_changed" from="PodcastControls/PodcastVolumeSlider" to="." method="_on_podcast_volume_slider_value_changed"]
 [connection signal="pressed" from="PodcastControls/HBoxContainer/PlayPodcast" to="." method="_on_play_podcast_pressed"]
 [connection signal="pressed" from="PodcastControls/HBoxContainer/StopPodcast" to="." method="_on_stop_podcast_pressed"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
