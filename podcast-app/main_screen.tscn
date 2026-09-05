@@ -13,12 +13,17 @@
 [node name="MainScreen" type="Node2D" unique_id=580331409]
 script = ExtResource("1_tjn2e")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=696309169]
+offset_right = 720.0
+offset_bottom = 960.0
+color = Color(0, 0, 0, 1)
+
 [node name="BedMusicControls" type="VBoxContainer" parent="." unique_id=1611353839]
 custom_maximum_size = Vector2(576, -1)
 offset_left = 64.0
 offset_top = 64.0
 offset_right = 640.0
-offset_bottom = 256.0
+offset_bottom = 220.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="BedMusicControls" unique_id=577472576]
 layout_mode = 2
@@ -40,22 +45,23 @@ label_settings = SubResource("LabelSettings_tjn2e")
 
 [node name="BedVolumeLabel" type="Label" parent="BedMusicControls" unique_id=1216958183]
 layout_mode = 2
-text = "volume : "
+text = "Volume : "
 
 [node name="HScrollBar" type="HScrollBar" parent="BedMusicControls" unique_id=2033162066]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 min_value = -20.0
-max_value = 10.0
+max_value = 1.0
 step = 0.5
-value = -5.0
+value = -10.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BedMusicControls" unique_id=1931582507]
 layout_mode = 2
 
 [node name="PlayBedMusic" type="Button" parent="BedMusicControls/HBoxContainer" unique_id=167093999]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
-text = "Play Bed Music"
+text = "Play"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BedMusicControls/HBoxContainer/PlayBedMusic" unique_id=797208785]
 stream = SubResource("AudioStreamMP3_7sdtm")
@@ -72,9 +78,9 @@ text = "Loop Bed Music"
 [node name="PodcastControls" type="VBoxContainer" parent="." unique_id=1856033750]
 custom_maximum_size = Vector2(576, -1)
 offset_left = 64.0
-offset_top = 320.0
+offset_top = 256.0
 offset_right = 640.0
-offset_bottom = 512.0
+offset_bottom = 448.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PodcastControls" unique_id=620334661]
 layout_mode = 2
@@ -88,12 +94,12 @@ access = 2
 
 [node name="LoadPodcast" type="Button" parent="PodcastControls/HBoxContainer2" unique_id=1274104911]
 layout_mode = 2
-text = "Load podcast
+text = "Load Podcast
 "
 
 [node name="Label" type="Label" parent="PodcastControls/HBoxContainer2" unique_id=590272031]
 layout_mode = 2
-text = "place holder text"
+text = "File Path"
 label_settings = SubResource("LabelSettings_w0p2i")
 
 [node name="PodcastVolumeLabel" type="Label" parent="PodcastControls" unique_id=1213348723]
@@ -132,12 +138,26 @@ layout_mode = 2
 stream = SubResource("AudioStreamMP3_d2enx")
 
 [node name="PlayPodcast" type="Button" parent="PodcastControls/HBoxContainer" unique_id=1684664366]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
-text = "Play podcast"
+text = "Play"
+autowrap_trim_flags = 0
 
 [node name="StopPodcast" type="Button" parent="PodcastControls/HBoxContainer" unique_id=138321423]
 layout_mode = 2
-text = "Pause podcast"
+text = "Pause"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1427746737]
+offset_left = 64.0
+offset_top = 512.0
+offset_right = 640.0
+offset_bottom = 640.0
+alignment = 1
+
+[node name="GlobalPause" type="Button" parent="HBoxContainer" unique_id=1870872846]
+custom_minimum_size = Vector2(576, 0)
+layout_mode = 2
+text = "Pause both Audio Files"
 
 [connection signal="file_selected" from="BedMusicControls/HBoxContainer2/FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="BedMusicControls/HBoxContainer2/LoadBedMusic" to="." method="_on_load_bed_music_pressed"]
@@ -151,3 +171,4 @@ text = "Pause podcast"
 [connection signal="value_changed" from="PodcastControls/PodcastPlayerInfo/PodcastProgressBar" to="." method="_on_podcast_progress_bar_value_changed"]
 [connection signal="pressed" from="PodcastControls/HBoxContainer/PlayPodcast" to="." method="_on_play_podcast_pressed"]
 [connection signal="pressed" from="PodcastControls/HBoxContainer/StopPodcast" to="." method="_on_stop_podcast_pressed"]
+[connection signal="pressed" from="HBoxContainer/GlobalPause" to="." method="_on_global_pause_pressed"]

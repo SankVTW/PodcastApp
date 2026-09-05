@@ -4,13 +4,13 @@ var bed_music
 var podcast
 var bed_volume #:float
 var podcast_volume #:float
-var podcast_playtime
+var podcast_playtime : float
 var podcast_progress : float
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	podcast_playtime = 0.0
+	#podcast_playtime = 0.0
 	print(bed_music)
 	print(bed_volume)
 	
@@ -59,11 +59,11 @@ func _on_file_dialog_file_selected(selected_file: String) -> void:
 
 func update_bed_music_volume():
 	bed_volume = $BedMusicControls/HScrollBar.value
-	$BedMusicControls/BedVolumeLabel.text = str("volume: ", bed_volume)
+	$BedMusicControls/BedVolumeLabel.text = str("Volume: ", bed_volume)
 	
 func update_podcast_volume():
 	podcast_volume = $PodcastControls/PodcastVolumeSlider.value
-	$PodcastControls/PodcastVolumeLabel.text = str("volume: " , podcast_volume)
+	$PodcastControls/PodcastVolumeLabel.text = str("Volume: " , podcast_volume)
 func _on_play_bed_music_pressed() -> void:
 	$BedMusicControls/HBoxContainer/PlayBedMusic/AudioStreamPlayer.stream = bed_music
 	print(bed_music)
@@ -104,14 +104,14 @@ func _on_play_podcast_pressed() -> void:
 func _on_stop_podcast_pressed() -> void:
 	if $PodcastControls/HBoxContainer/AudioStreamPlayer.playing == true:
 		$PodcastControls/HBoxContainer/AudioStreamPlayer.stream_paused = true
-		#podcast_progress = $PodcastControls/HBoxContainer/AudioStreamPlayer.get_playback_position()
 		print (podcast_progress)
 		$PodcastControls/HBoxContainer/AudioStreamPlayer.volume_db = podcast_volume
+		$PodcastControls/HBoxContainer/StopPodcast.text = str("Resume")
 	elif $PodcastControls/HBoxContainer/AudioStreamPlayer.playing == false:
 		$PodcastControls/HBoxContainer/AudioStreamPlayer.seek(podcast_progress)
 		$PodcastControls/HBoxContainer/AudioStreamPlayer.stream_paused = false
 		$PodcastControls/HBoxContainer/AudioStreamPlayer.volume_db = podcast_volume
-		
+		$PodcastControls/HBoxContainer/StopPodcast.text = str("Pause")
 		
 
 func _on_h_scroll_bar_value_changed(value: float) -> void:
@@ -146,4 +146,10 @@ func update_podcast_progress():
 func _on_podcast_progress_bar_value_changed(value: float) -> void:
 	$PodcastControls/PodcastPlayerInfo/PodcastProgressBar.value = podcast_progress
 	
+	pass # Replace with function body.
+
+
+func _on_global_pause_pressed() -> void:
+	_on_stop_podcast_pressed()
+	_on_pause_bed_music_pressed()
 	pass # Replace with function body.
