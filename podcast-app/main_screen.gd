@@ -7,6 +7,7 @@ var podcast_volume #:float
 var podcast_playtime
 var podcast_progress : float
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	podcast_playtime = 0.0
@@ -38,6 +39,9 @@ func load_podcast_mp3(path):
 	print("Podcast is ",   sound.get_length(), " seconds long")
 	podcast = sound
 	podcast_playtime = podcast.get_length()
+	
+	$PodcastControls/PodcastPlayerInfo/PodcastProgressBar.max_value = podcast_playtime
+	
 	#$PodcastControls/PodcastPlayerInfo/ProgressArea/ProgressTimeLabel.text = str(podcast_progress," / ", podcast_playtime )
 	print(" total play time for" , file , " is ", podcast_playtime/60 , " minutes")
 func _on_load_bed_music_pressed() -> void:
@@ -133,5 +137,13 @@ func _on_podcast_volume_slider_value_changed(value: float) -> void:
 func update_podcast_progress():
 	podcast_progress = $PodcastControls/HBoxContainer/AudioStreamPlayer.get_playback_position()
 	$PodcastControls/PodcastPlayerInfo/ProgressArea/ProgressTimeLabel.text = str(roundf(podcast_progress)," / ", podcast_playtime )
-	print(roundf(podcast_progress)," / ", podcast_playtime )
+	_on_podcast_progress_bar_value_changed(podcast_progress)
+	#print(roundf(podcast_progress)," / ", podcast_playtime )
 	
+	
+
+
+func _on_podcast_progress_bar_value_changed(value: float) -> void:
+	$PodcastControls/PodcastPlayerInfo/PodcastProgressBar.value = podcast_progress
+	
+	pass # Replace with function body.

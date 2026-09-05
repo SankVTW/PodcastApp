@@ -121,7 +121,7 @@ text = "Progress:"
 layout_mode = 2
 text = "00:00:00  / 01:00:00"
 
-[node name="HScrollBar" type="HScrollBar" parent="PodcastControls/PodcastPlayerInfo" unique_id=1272085998]
+[node name="PodcastProgressBar" type="HScrollBar" parent="PodcastControls/PodcastPlayerInfo" unique_id=1272085998]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 
@@ -148,5 +148,6 @@ text = "Pause podcast"
 [connection signal="file_selected" from="PodcastControls/HBoxContainer2/PodcastFileDialog" to="." method="_on_podcast_file_dialog_file_selected"]
 [connection signal="pressed" from="PodcastControls/HBoxContainer2/LoadPodcast" to="." method="_on_load_podcast_pressed"]
 [connection signal="value_changed" from="PodcastControls/PodcastVolumeSlider" to="." method="_on_podcast_volume_slider_value_changed"]
+[connection signal="value_changed" from="PodcastControls/PodcastPlayerInfo/PodcastProgressBar" to="." method="_on_podcast_progress_bar_value_changed"]
 [connection signal="pressed" from="PodcastControls/HBoxContainer/PlayPodcast" to="." method="_on_play_podcast_pressed"]
 [connection signal="pressed" from="PodcastControls/HBoxContainer/StopPodcast" to="." method="_on_stop_podcast_pressed"]
