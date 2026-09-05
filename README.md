@@ -4,7 +4,7 @@ I like having bed music to podcasts and most of the ones i listen to regularly d
 
 I making this for me but if you want to use it go ahead.
 
-Progress will probably be intermittent and slow 
+Progress will probably be intermittent and slow but the long term idea is to make it usable on a phone much like other podcast/music apps
 
 Made in godot because its the only thing i know how to code in with any real confidence. 
 
