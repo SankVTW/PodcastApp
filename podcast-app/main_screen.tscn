@@ -31,10 +31,13 @@ layout_mode = 2
 [node name="FileDialog" type="FileDialog" parent="BedMusicControls/HBoxContainer2" unique_id=1426772110]
 title = "Open a File"
 file_mode = 0
-access = 2
+display_mode = 1
+root_subfolder = "res://Bedmusic/"
+filters = PackedStringArray("*.mp3")
 
 [node name="LoadBedMusic" type="Button" parent="BedMusicControls/HBoxContainer2" unique_id=2143036947]
 layout_mode = 2
+tooltip_text = "Load an MP3 from your /Bedmusic folder"
 text = "Load Bed Music
 "
 
@@ -57,6 +60,7 @@ value = -10.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BedMusicControls" unique_id=1931582507]
 layout_mode = 2
+alignment = 1
 
 [node name="PlayBedMusic" type="Button" parent="BedMusicControls/HBoxContainer" unique_id=167093999]
 custom_minimum_size = Vector2(64, 0)
@@ -68,10 +72,13 @@ stream = SubResource("AudioStreamMP3_7sdtm")
 parameters/looping = true
 
 [node name="PauseBedMusic" type="Button" parent="BedMusicControls/HBoxContainer" unique_id=1536354302]
+visible = false
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-text = "Pause Bed Music"
+text = "Pause"
 
 [node name="LoopBedMusic" type="CheckButton" parent="BedMusicControls/HBoxContainer" unique_id=766334865]
+visible = false
 layout_mode = 2
 text = "Loop Bed Music"
 
@@ -90,7 +97,9 @@ oversampling_override = 1.0
 title = "Open a File"
 position = Vector2i(0, 36)
 file_mode = 0
-access = 2
+display_mode = 1
+root_subfolder = "res://Podcast/"
+filters = PackedStringArray("*.mp3")
 
 [node name="LoadPodcast" type="Button" parent="PodcastControls/HBoxContainer2" unique_id=1274104911]
 layout_mode = 2
@@ -133,9 +142,14 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PodcastControls" unique_id=2120387390]
 layout_mode = 2
+alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PodcastControls/HBoxContainer" unique_id=2095786498]
 stream = SubResource("AudioStreamMP3_d2enx")
+
+[node name="Back15" type="Button" parent="PodcastControls/HBoxContainer" unique_id=873219966]
+layout_mode = 2
+text = "Back 15"
 
 [node name="PlayPodcast" type="Button" parent="PodcastControls/HBoxContainer" unique_id=1684664366]
 custom_minimum_size = Vector2(64, 0)
@@ -144,31 +158,44 @@ text = "Play"
 autowrap_trim_flags = 0
 
 [node name="StopPodcast" type="Button" parent="PodcastControls/HBoxContainer" unique_id=138321423]
+visible = false
 layout_mode = 2
 text = "Pause"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1427746737]
+[node name="Forward30" type="Button" parent="PodcastControls/HBoxContainer" unique_id=1355855557]
+layout_mode = 2
+text = "Forward 30"
+
+[node name="GlobalPauseContainer" type="HBoxContainer" parent="." unique_id=1427746737]
 offset_left = 64.0
 offset_top = 512.0
 offset_right = 640.0
 offset_bottom = 640.0
 alignment = 1
 
-[node name="GlobalPause" type="Button" parent="HBoxContainer" unique_id=1870872846]
+[node name="GlobalPause" type="Button" parent="GlobalPauseContainer" unique_id=1870872846]
+visible = false
 custom_minimum_size = Vector2(576, 0)
 layout_mode = 2
-text = "Pause both Audio Files"
+text = "Pause Both Audio Files"
+
+[node name="GlobalPlay" type="Button" parent="GlobalPauseContainer" unique_id=1989959169]
+custom_minimum_size = Vector2(576, 0)
+layout_mode = 2
+text = "Play Both Audio Files"
 
 [connection signal="file_selected" from="BedMusicControls/HBoxContainer2/FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="BedMusicControls/HBoxContainer2/LoadBedMusic" to="." method="_on_load_bed_music_pressed"]
 [connection signal="value_changed" from="BedMusicControls/HScrollBar" to="." method="_on_h_scroll_bar_value_changed"]
 [connection signal="pressed" from="BedMusicControls/HBoxContainer/PlayBedMusic" to="." method="_on_play_bed_music_pressed"]
 [connection signal="pressed" from="BedMusicControls/HBoxContainer/PauseBedMusic" to="." method="_on_pause_bed_music_pressed"]
-[connection signal="toggled" from="BedMusicControls/HBoxContainer/LoopBedMusic" to="." method="_on_loop_bed_music_toggled"]
 [connection signal="file_selected" from="PodcastControls/HBoxContainer2/PodcastFileDialog" to="." method="_on_podcast_file_dialog_file_selected"]
 [connection signal="pressed" from="PodcastControls/HBoxContainer2/LoadPodcast" to="." method="_on_load_podcast_pressed"]
 [connection signal="value_changed" from="PodcastControls/PodcastVolumeSlider" to="." method="_on_podcast_volume_slider_value_changed"]
 [connection signal="value_changed" from="PodcastControls/PodcastPlayerInfo/PodcastProgressBar" to="." method="_on_podcast_progress_bar_value_changed"]
+[connection signal="pressed" from="PodcastControls/HBoxContainer/Back15" to="." method="_on_back_15_pressed"]
 [connection signal="pressed" from="PodcastControls/HBoxContainer/PlayPodcast" to="." method="_on_play_podcast_pressed"]
 [connection signal="pressed" from="PodcastControls/HBoxContainer/StopPodcast" to="." method="_on_stop_podcast_pressed"]
-[connection signal="pressed" from="HBoxContainer/GlobalPause" to="." method="_on_global_pause_pressed"]
+[connection signal="pressed" from="PodcastControls/HBoxContainer/Forward30" to="." method="_on_forward_30_pressed"]
+[connection signal="pressed" from="GlobalPauseContainer/GlobalPause" to="." method="_on_global_pause_pressed"]
+[connection signal="pressed" from="GlobalPauseContainer/GlobalPlay" to="." method="_on_global_play_pressed"]
