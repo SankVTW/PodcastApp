@@ -16,7 +16,7 @@ script = ExtResource("1_tjn2e")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=696309169]
 offset_right = 720.0
 offset_bottom = 960.0
-color = Color(0, 0, 0, 1)
+color = Color(0.35195246, 0.39895642, 0.5399287, 1)
 
 [node name="BedMusicControls" type="VBoxContainer" parent="." unique_id=1611353839]
 custom_maximum_size = Vector2(576, -1)
@@ -30,10 +30,11 @@ layout_mode = 2
 
 [node name="FileDialog" type="FileDialog" parent="BedMusicControls/HBoxContainer2" unique_id=1426772110]
 title = "Open a File"
+size = Vector2i(640, 720)
 file_mode = 0
 display_mode = 1
-root_subfolder = "res://Bedmusic/"
-filters = PackedStringArray("*.mp3")
+access = 2
+use_native_dialog = true
 
 [node name="LoadBedMusic" type="Button" parent="BedMusicControls/HBoxContainer2" unique_id=2143036947]
 layout_mode = 2
@@ -72,7 +73,6 @@ stream = SubResource("AudioStreamMP3_7sdtm")
 parameters/looping = true
 
 [node name="PauseBedMusic" type="Button" parent="BedMusicControls/HBoxContainer" unique_id=1536354302]
-visible = false
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "Pause"
@@ -96,10 +96,11 @@ layout_mode = 2
 oversampling_override = 1.0
 title = "Open a File"
 position = Vector2i(0, 36)
+size = Vector2i(640, 720)
 file_mode = 0
 display_mode = 1
-root_subfolder = "res://Podcast/"
-filters = PackedStringArray("*.mp3")
+access = 2
+use_native_dialog = true
 
 [node name="LoadPodcast" type="Button" parent="PodcastControls/HBoxContainer2" unique_id=1274104911]
 layout_mode = 2
@@ -158,7 +159,6 @@ text = "Play"
 autowrap_trim_flags = 0
 
 [node name="StopPodcast" type="Button" parent="PodcastControls/HBoxContainer" unique_id=138321423]
-visible = false
 layout_mode = 2
 text = "Pause"
 
@@ -183,6 +183,14 @@ text = "Pause Both Audio Files"
 custom_minimum_size = Vector2(576, 0)
 layout_mode = 2
 text = "Play Both Audio Files"
+
+[node name="TimeDateLable" type="Label" parent="." unique_id=159409961]
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 704.0
+offset_bottom = 55.0
+text = "Time : 00:00:00  Date  Day:Month:Year"
+horizontal_alignment = 1
 
 [connection signal="file_selected" from="BedMusicControls/HBoxContainer2/FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="BedMusicControls/HBoxContainer2/LoadBedMusic" to="." method="_on_load_bed_music_pressed"]

@@ -6,6 +6,8 @@ var bed_volume :float = 0.0
 var podcast_volume :float = 0.0
 var podcast_playtime : float
 var podcast_progress : float
+var local_date  = Time.get_datetime_dict_from_system()
+var local_time  = Time.get_time_string_from_system()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -13,16 +15,19 @@ func _ready() -> void:
 	#podcast_playtime = 0.0
 	print(bed_music)
 	print(bed_volume)
-
-
+	print("Time: ",local_time,"      ","Date: ",local_date.day," - ", local_date.month , " - ", local_date.year )
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#update_bed_music_volume()
 	#update_podcast_volume()
 	update_podcast_progress()
-
-
-
+	update_time_date()
+	
+func update_time_date():
+	local_date = Time.get_datetime_dict_from_system()
+	local_time = Time.get_time_string_from_system()
+	$TimeDateLable.text = str("Time: ",local_time,"      ","Date: ",local_date.day," - ", local_date.month , " - ", local_date.year )
 func load_bed_music_mp3(path):
 	var file = FileAccess.open(path, FileAccess.READ)
 	var sound = AudioStreamMP3.new()
