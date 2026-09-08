@@ -8,7 +8,7 @@ var podcast_playtime : float
 var podcast_progress : float
 var local_date  = Time.get_datetime_dict_from_system()
 var local_time  = Time.get_time_string_from_system()
-
+var podcast_playtime_HHMMSS
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,7 +44,14 @@ func load_podcast_mp3(path):
 	var file = FileAccess.open(path, FileAccess.READ)
 	var sound = AudioStreamMP3.new()
 	sound.data = file.get_buffer(file.get_length())
-	print("Podcast is ",   sound.get_length(), " seconds long")
+	var total_seconds : int = sound.get_length()
+	var minutes : int = (total_seconds%3600)/60
+	var hours : int = total_seconds/3600
+	var secs : int = total_seconds% 60
+	print("Podcast is ", hours , " hours and ", minutes  , " minutes long")
+	print(" total play time for" , path.get_file() , " is ", podcast_playtime/60 , " minutes")
+	print( "%02d:%02d:%02d" % [hours, minutes, secs])
+	podcast_playtime_HHMMSS = str( "%02d:%02d:%02d" % [hours, minutes, secs])
 	podcast = sound
 	podcast_playtime = podcast.get_length()
 	
@@ -56,7 +63,8 @@ func load_podcast_mp3(path):
 			$PodcastControls/HBoxContainer/PlayPodcast.visible = true
 			$PodcastControls/HBoxContainer/StopPodcast.visible = false
 
-	print(" total play time for" , file , " is ", podcast_playtime/60 , " minutes")
+	
+	
 func _on_load_bed_music_pressed() -> void:
 	$BedMusicControls/HBoxContainer2/FileDialog.visible = true
 	pass
@@ -64,9 +72,9 @@ func _on_load_bed_music_pressed() -> void:
 
 func _on_file_dialog_file_selected(selected_file: String) -> void:
 	
-	$BedMusicControls/HBoxContainer2/Label.text = selected_file
+	$BedMusicControls/HBoxContainer2/Label.text = selected_file.get_file()
 	load_bed_music_mp3(selected_file)
-	print("bed music" , selected_file)
+	print("bed music" , selected_file.get_file())
 	
 	
 
@@ -108,9 +116,9 @@ func _on_load_podcast_pressed() -> void:
 
 
 func _on_podcast_file_dialog_file_selected(path: String) -> void:
-	$PodcastControls/HBoxContainer2/Label.text = path
+	$PodcastControls/HBoxContainer2/Label.text = path.get_file()
 	load_podcast_mp3(path)
-	print("podcast", path)
+	print("podcast", path.get_file())
 	$PodcastControls/HBoxContainer/PlayPodcast.visible = true
 	$PodcastControls/HBoxContainer/StopPodcast.visible = false
 	_on_stop_podcast_pressed()
@@ -130,7 +138,6 @@ func _on_play_podcast_pressed() -> void:
 func _on_stop_podcast_pressed() -> void:
 	if $PodcastControls/HBoxContainer/AudioStreamPlayer.playing == true:
 		$PodcastControls/HBoxContainer/AudioStreamPlayer.stream_paused = true
-		print (podcast_progress)
 		$PodcastControls/HBoxContainer/AudioStreamPlayer.volume_db = podcast_volume
 		$PodcastControls/HBoxContainer/StopPodcast.text = str("Resume")
 	elif $PodcastControls/HBoxContainer/AudioStreamPlayer.playing == false:
@@ -154,11 +161,12 @@ func _on_podcast_volume_slider_value_changed(value: float) -> void:
 
 func update_podcast_progress():
 	podcast_progress = $PodcastControls/HBoxContainer/AudioStreamPlayer.get_playback_position()
-	$PodcastControls/PodcastPlayerInfo/ProgressArea/ProgressTimeLabel.text = str(roundf(podcast_progress)," / ", podcast_playtime )
+	$PodcastControls/PodcastPlayerInfo/ProgressArea/ProgressTimeLabel.text = str(roundf(podcast_progress)," / ", podcast_playtime_HHMMSS )
 	_on_podcast_progress_bar_value_changed(podcast_progress)
 
 func _on_podcast_progress_bar_value_changed(value: float) -> void:
-	$PodcastControls/PodcastPlayerInfo/PodcastProgressBar.value = podcast_progress
+	
+	$PodcastControls/PodcastPlayerInfo/PodcastProgressBar.value =podcast_progress
 	
 
 func _on_global_pause_pressed() -> void:
