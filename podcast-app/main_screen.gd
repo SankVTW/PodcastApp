@@ -10,6 +10,7 @@ var local_date  = Time.get_datetime_dict_from_system()
 var local_time  = Time.get_time_string_from_system()
 var podcast_playtime_HHMMSS
 var podcast_progress_HHMMSS
+var t :float  
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -142,7 +143,7 @@ func _on_play_podcast_pressed() -> void:
 	$PodcastControls/HBoxContainer/StopPodcast.visible = true
 	$GlobalPauseContainer/GlobalPlay.visible = false
 	$GlobalPauseContainer/GlobalPause.visible = true
-	tape_wheel_rotation()
+	tape_wheel_rotation(5)
 
 func _on_stop_podcast_pressed() -> void:
 	if $PodcastControls/HBoxContainer/AudioStreamPlayer.playing == true:
@@ -210,6 +211,7 @@ func _on_back_15_pressed() -> void:
 	update_podcast_progress()
 	print(podcast_progress)
 	
-func tape_wheel_rotation():
-	$ColorRect2/WheelLeft.rotate(5)
+func tape_wheel_rotation(delta: float):
+	t += delta
+	$ColorRect2/WheelLeft.rotate(.1)
 	$ColorRect2/WheelRight.rotate(5)
