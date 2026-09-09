@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cbrdtltc81f7s"]
 
 [ext_resource type="Script" uid="uid://dlimoabl4t4o1" path="res://main_screen.gd" id="1_tjn2e"]
+[ext_resource type="Texture2D" uid="uid://byky4hff2weyd" path="res://tape_images/CassesttapeWheel.png" id="2_7a4el"]
+[ext_resource type="Texture2D" uid="uid://blhk48mha7ruu" path="res://Visual Assets/music-audio-tape.png" id="3_kwhh3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tjn2e"]
 
@@ -54,10 +56,10 @@ text = "Volume : "
 [node name="HScrollBar" type="HScrollBar" parent="BedMusicControls" unique_id=2033162066]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
-min_value = -20.0
+min_value = -30.0
 max_value = 1.0
 step = 0.5
-value = -10.0
+value = -15.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BedMusicControls" unique_id=1931582507]
 layout_mode = 2
@@ -76,11 +78,6 @@ parameters/looping = true
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "Pause"
-
-[node name="LoopBedMusic" type="CheckButton" parent="BedMusicControls/HBoxContainer" unique_id=766334865]
-visible = false
-layout_mode = 2
-text = "Loop Bed Music"
 
 [node name="PodcastControls" type="VBoxContainer" parent="." unique_id=1856033750]
 custom_maximum_size = Vector2(576, -1)
@@ -185,12 +182,34 @@ layout_mode = 2
 text = "Play Both Audio Files"
 
 [node name="TimeDateLable" type="Label" parent="." unique_id=159409961]
-offset_left = 16.0
-offset_top = 32.0
-offset_right = 704.0
-offset_bottom = 55.0
+offset_left = 64.0
+offset_top = 24.0
+offset_right = 640.0
+offset_bottom = 47.0
 text = "Time : 00:00:00  Date  Day:Month:Year"
 horizontal_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1765822679]
+offset_left = 64.0
+offset_top = 664.0
+offset_right = 640.0
+offset_bottom = 896.0
+color = Color(0.2520276, 0.25202766, 0.25202763, 1)
+
+[node name="WheelLeft" type="Sprite2D" parent="ColorRect2" unique_id=1040932519]
+position = Vector2(212, 108)
+scale = Vector2(0.39999998, 0.39999998)
+texture = ExtResource("2_7a4el")
+
+[node name="WheelRight" type="Sprite2D" parent="ColorRect2" unique_id=544789603]
+position = Vector2(365, 108)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_7a4el")
+
+[node name="TapeFace" type="Sprite2D" parent="ColorRect2" unique_id=1473676000]
+position = Vector2(288, 120)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("3_kwhh3")
 
 [connection signal="file_selected" from="BedMusicControls/HBoxContainer2/FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="BedMusicControls/HBoxContainer2/LoadBedMusic" to="." method="_on_load_bed_music_pressed"]
