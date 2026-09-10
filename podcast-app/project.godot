@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="podcast app"
-run/main_scene="res://main_screen.tscn"
+config/name="TapeDeck"
+run/main_scene="uid://d1yfpib4thenl"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="uid://nfb8dhnpfyo0"
 

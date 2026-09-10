@@ -1,0 +1,245 @@
+[gd_scene format=3 uid="uid://d1yfpib4thenl"]
+
+[ext_resource type="Script" uid="uid://dlimoabl4t4o1" path="res://main_screen.gd" id="1_tfhfe"]
+[ext_resource type="Texture2D" uid="uid://bru6avkxg1dev" path="res://Visual Assets/CassesttapeWheel.png" id="2_tfhfe"]
+[ext_resource type="Texture2D" uid="uid://blhk48mha7ruu" path="res://Visual Assets/music-audio-tape.png" id="3_hlwt3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tjn2e"]
+
+[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_7sdtm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w0p2i"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_doxfi"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tfhfe"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_d2enx"]
+
+[node name="MainScreen" type="Node2D" unique_id=580331409]
+script = ExtResource("1_tfhfe")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=696309169]
+offset_right = 720.0
+offset_bottom = 960.0
+color = Color(0.20207497, 0.43855143, 0.5378131, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1765822679]
+offset_left = 583.1567
+offset_top = 2.0
+offset_right = 1497.5938
+offset_bottom = 2.0
+rotation = 1.5707964
+color = Color(0.2520276, 0.25202766, 0.25202763, 1)
+
+[node name="WheelLeft" type="Sprite2D" parent="ColorRect2" unique_id=1040932519]
+position = Vector2(278, 252.15668)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_tfhfe")
+
+[node name="WheelRight" type="Sprite2D" parent="ColorRect2" unique_id=544789603]
+position = Vector2(680, 251.15665)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_tfhfe")
+
+[node name="TapeFace" type="Sprite2D" parent="ColorRect2" unique_id=1473676000]
+position = Vector2(478.00003, 280.15662)
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("3_hlwt3")
+
+[node name="BedMusicControls" type="VBoxContainer" parent="." unique_id=1611353839]
+custom_maximum_size = Vector2(576, -1)
+offset_left = 723.0
+offset_top = 159.0
+offset_right = 1299.0
+offset_bottom = 315.0
+rotation = 1.5707964
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BedMusicControls" unique_id=577472576]
+layout_mode = 2
+
+[node name="FileDialog" type="FileDialog" parent="BedMusicControls/HBoxContainer2" unique_id=1426772110]
+title = "Open a File"
+size = Vector2i(640, 720)
+file_mode = 0
+display_mode = 1
+access = 2
+use_native_dialog = true
+
+[node name="LoadBedMusic" type="Button" parent="BedMusicControls/HBoxContainer2" unique_id=2143036947]
+layout_mode = 2
+tooltip_text = "Load an MP3 from your /Bedmusic folder"
+text = "Load Bed Music
+"
+
+[node name="Label" type="Label" parent="BedMusicControls/HBoxContainer2" unique_id=286421147]
+layout_mode = 2
+text = "File Path"
+label_settings = SubResource("LabelSettings_tjn2e")
+
+[node name="BedVolumeLabel" type="Label" parent="BedMusicControls" unique_id=1216958183]
+layout_mode = 2
+text = "Volume : "
+
+[node name="HScrollBar" type="HScrollBar" parent="BedMusicControls" unique_id=2033162066]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+min_value = -30.0
+max_value = 1.0
+step = 0.5
+value = -15.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BedMusicControls" unique_id=1931582507]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayBedMusic" type="Button" parent="BedMusicControls/HBoxContainer" unique_id=167093999]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "Play"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BedMusicControls/HBoxContainer/PlayBedMusic" unique_id=797208785]
+stream = SubResource("AudioStreamMP3_7sdtm")
+parameters/looping = true
+
+[node name="PauseBedMusic" type="Button" parent="BedMusicControls/HBoxContainer" unique_id=1536354302]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "Pause"
+
+[node name="PodcastControls" type="VBoxContainer" parent="." unique_id=1856033750]
+custom_maximum_size = Vector2(576, -1)
+offset_left = 541.0
+offset_top = 148.0
+offset_right = 1117.0
+offset_bottom = 340.0
+rotation = 1.5707964
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PodcastControls" unique_id=620334661]
+layout_mode = 2
+
+[node name="PodcastFileDialog" type="FileDialog" parent="PodcastControls/HBoxContainer2" unique_id=208933241]
+oversampling_override = 1.0
+title = "Open a File"
+position = Vector2i(0, 36)
+size = Vector2i(640, 720)
+file_mode = 0
+display_mode = 1
+access = 2
+use_native_dialog = true
+
+[node name="LoadPodcast" type="Button" parent="PodcastControls/HBoxContainer2" unique_id=1274104911]
+layout_mode = 2
+text = "Load Podcast
+"
+
+[node name="Label" type="Label" parent="PodcastControls/HBoxContainer2" unique_id=590272031]
+layout_mode = 2
+text = "File Path"
+label_settings = SubResource("LabelSettings_w0p2i")
+
+[node name="PodcastVolumeLabel" type="Label" parent="PodcastControls" unique_id=1213348723]
+visible = false
+layout_mode = 2
+text = "Volume:"
+label_settings = SubResource("LabelSettings_doxfi")
+
+[node name="PodcastVolumeSlider" type="HScrollBar" parent="PodcastControls" unique_id=1312411120]
+visible = false
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+min_value = -10.0
+max_value = 10.0
+step = 0.5
+
+[node name="PodcastPlayerInfo" type="VBoxContainer" parent="PodcastControls" unique_id=207762990]
+layout_mode = 2
+
+[node name="ProgressArea" type="HBoxContainer" parent="PodcastControls/PodcastPlayerInfo" unique_id=1044771444]
+layout_mode = 2
+
+[node name="ProgressLabel" type="Label" parent="PodcastControls/PodcastPlayerInfo/ProgressArea" unique_id=1790028275]
+layout_mode = 2
+text = "Progress:"
+label_settings = SubResource("LabelSettings_tfhfe")
+
+[node name="ProgressTimeLabel" type="Label" parent="PodcastControls/PodcastPlayerInfo/ProgressArea" unique_id=1836336381]
+layout_mode = 2
+text = "00:00:00  / 01:00:00"
+label_settings = SubResource("LabelSettings_tfhfe")
+
+[node name="PodcastProgressBar" type="HScrollBar" parent="PodcastControls/PodcastPlayerInfo" unique_id=1272085998]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PodcastControls" unique_id=2120387390]
+layout_mode = 2
+alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PodcastControls/HBoxContainer" unique_id=2095786498]
+stream = SubResource("AudioStreamMP3_d2enx")
+
+[node name="Back15" type="Button" parent="PodcastControls/HBoxContainer" unique_id=873219966]
+layout_mode = 2
+text = "Back 15"
+
+[node name="PlayPodcast" type="Button" parent="PodcastControls/HBoxContainer" unique_id=1684664366]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+text = "Play"
+autowrap_trim_flags = 0
+
+[node name="StopPodcast" type="Button" parent="PodcastControls/HBoxContainer" unique_id=138321423]
+layout_mode = 2
+text = "Pause"
+
+[node name="Forward30" type="Button" parent="PodcastControls/HBoxContainer" unique_id=1355855557]
+layout_mode = 2
+text = "Forward 30"
+
+[node name="GlobalPauseContainer" type="HBoxContainer" parent="." unique_id=1427746737]
+offset_left = 236.0
+offset_top = 198.0
+offset_right = 812.0
+offset_bottom = 326.0
+rotation = 1.5707964
+alignment = 1
+
+[node name="GlobalPause" type="Button" parent="GlobalPauseContainer" unique_id=1870872846]
+visible = false
+custom_minimum_size = Vector2(576, 0)
+layout_mode = 2
+text = "Pause Both Audio Files"
+
+[node name="GlobalPlay" type="Button" parent="GlobalPauseContainer" unique_id=1989959169]
+custom_minimum_size = Vector2(576, 0)
+layout_mode = 2
+text = "Play Both Audio Files"
+
+[node name="TimeDateLabel" type="Label" parent="." unique_id=159409961]
+offset_left = 105.0
+offset_top = 201.0
+offset_right = 681.0
+offset_bottom = 224.0
+rotation = 1.5707964
+text = "Time : 00:00:00  Date  Day:Month:Year"
+horizontal_alignment = 1
+
+[connection signal="file_selected" from="BedMusicControls/HBoxContainer2/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="BedMusicControls/HBoxContainer2/LoadBedMusic" to="." method="_on_load_bed_music_pressed"]
+[connection signal="value_changed" from="BedMusicControls/HScrollBar" to="." method="_on_h_scroll_bar_value_changed"]
+[connection signal="pressed" from="BedMusicControls/HBoxContainer/PlayBedMusic" to="." method="_on_play_bed_music_pressed"]
+[connection signal="pressed" from="BedMusicControls/HBoxContainer/PauseBedMusic" to="." method="_on_pause_bed_music_pressed"]
+[connection signal="file_selected" from="PodcastControls/HBoxContainer2/PodcastFileDialog" to="." method="_on_podcast_file_dialog_file_selected"]
+[connection signal="pressed" from="PodcastControls/HBoxContainer2/LoadPodcast" to="." method="_on_load_podcast_pressed"]
+[connection signal="value_changed" from="PodcastControls/PodcastVolumeSlider" to="." method="_on_podcast_volume_slider_value_changed"]
+[connection signal="value_changed" from="PodcastControls/PodcastPlayerInfo/PodcastProgressBar" to="." method="_on_podcast_progress_bar_value_changed"]
+[connection signal="pressed" from="PodcastControls/HBoxContainer/Back15" to="." method="_on_back_15_pressed"]
+[connection signal="pressed" from="PodcastControls/HBoxContainer/PlayPodcast" to="." method="_on_play_podcast_pressed"]
+[connection signal="pressed" from="PodcastControls/HBoxContainer/StopPodcast" to="." method="_on_stop_podcast_pressed"]
+[connection signal="pressed" from="PodcastControls/HBoxContainer/Forward30" to="." method="_on_forward_30_pressed"]
+[connection signal="pressed" from="GlobalPauseContainer/GlobalPause" to="." method="_on_global_pause_pressed"]
+[connection signal="pressed" from="GlobalPauseContainer/GlobalPlay" to="." method="_on_global_play_pressed"]

@@ -24,13 +24,15 @@ func _process(delta: float) -> void:
 	#update_bed_music_volume()
 	#update_podcast_volume()
 	#update_podcast_progress()
+	
 	update_time_date()
 	if $PodcastControls/HBoxContainer/AudioStreamPlayer.playing == true :
 		update_podcast_progress()
+		tape_wheel_rotation(podcast_progress)
 func update_time_date():
 	local_date = Time.get_datetime_dict_from_system()
 	local_time = Time.get_time_string_from_system()
-	$TimeDateLable.text = str("Time: ",local_time,"      ","Date: ",local_date.day," - ", local_date.month , " - ", local_date.year )
+	$TimeDateLabel.text = str("Time: ",local_time,"      ","Date: ",local_date.day," - ", local_date.month , " - ", local_date.year )
 func load_bed_music_mp3(path):
 	var file = FileAccess.open(path, FileAccess.READ)
 	var sound = AudioStreamMP3.new()
@@ -60,8 +62,10 @@ func load_podcast_mp3(path):
 	
 	$PodcastControls/PodcastPlayerInfo/PodcastProgressBar.max_value = podcast_playtime
 	match $PodcastControls/HBoxContainer/PlayPodcast.visible:
-		#true:
-			#pass
+		true:
+			#$PodcastControls/HBoxContainer/PlayPodcast.visible = true
+			#$PodcastControls/HBoxContainer/StopPodcast.visible = false
+			pass
 		false:
 			$PodcastControls/HBoxContainer/PlayPodcast.visible = true
 			$PodcastControls/HBoxContainer/StopPodcast.visible = false
@@ -143,7 +147,7 @@ func _on_play_podcast_pressed() -> void:
 	$PodcastControls/HBoxContainer/StopPodcast.visible = true
 	$GlobalPauseContainer/GlobalPlay.visible = false
 	$GlobalPauseContainer/GlobalPause.visible = true
-	tape_wheel_rotation(5)
+	#tape_wheel_rotation(podcast_progress)
 
 func _on_stop_podcast_pressed() -> void:
 	if $PodcastControls/HBoxContainer/AudioStreamPlayer.playing == true:
@@ -211,7 +215,7 @@ func _on_back_15_pressed() -> void:
 	update_podcast_progress()
 	print(podcast_progress)
 	
-func tape_wheel_rotation(delta: float):
+func tape_wheel_rotation(delta):
 	t += delta
-	$ColorRect2/WheelLeft.rotate(.1)
-	$ColorRect2/WheelRight.rotate(5)
+	$ColorRect2/WheelLeft.rotate(.01)
+	$ColorRect2/WheelRight.rotate(.01)

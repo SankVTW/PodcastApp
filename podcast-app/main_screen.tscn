@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cbrdtltc81f7s"]
 
 [ext_resource type="Script" uid="uid://dlimoabl4t4o1" path="res://main_screen.gd" id="1_tjn2e"]
-[ext_resource type="Texture2D" uid="uid://byky4hff2weyd" path="res://tape_images/CassesttapeWheel.png" id="2_7a4el"]
+[ext_resource type="Texture2D" uid="uid://bru6avkxg1dev" path="res://Visual Assets/CassesttapeWheel.png" id="2_kwhh3"]
 [ext_resource type="Texture2D" uid="uid://blhk48mha7ruu" path="res://Visual Assets/music-audio-tape.png" id="3_kwhh3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tjn2e"]
@@ -181,7 +181,7 @@ custom_minimum_size = Vector2(576, 0)
 layout_mode = 2
 text = "Play Both Audio Files"
 
-[node name="TimeDateLable" type="Label" parent="." unique_id=159409961]
+[node name="TimeDateLabel" type="Label" parent="." unique_id=159409961]
 offset_left = 64.0
 offset_top = 24.0
 offset_right = 640.0
@@ -199,12 +199,12 @@ color = Color(0.2520276, 0.25202766, 0.25202763, 1)
 [node name="WheelLeft" type="Sprite2D" parent="ColorRect2" unique_id=1040932519]
 position = Vector2(212, 108)
 scale = Vector2(0.39999998, 0.39999998)
-texture = ExtResource("2_7a4el")
+texture = ExtResource("2_kwhh3")
 
 [node name="WheelRight" type="Sprite2D" parent="ColorRect2" unique_id=544789603]
 position = Vector2(365, 108)
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_7a4el")
+texture = ExtResource("2_kwhh3")
 
 [node name="TapeFace" type="Sprite2D" parent="ColorRect2" unique_id=1473676000]
 position = Vector2(288, 120)
